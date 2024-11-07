@@ -13,7 +13,7 @@ body {
 .multiline-ellipsis {
   display: -webkit-box;
   line-clamp: 4;
-  -webkit-line-clamp: 4; /* Nombre de lignes à afficher avant d'ajouter les points de suspension */
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
