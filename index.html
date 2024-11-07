@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./css/output.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+
+  <title>Document</title>
+</head>
+<body>
+  <header>
+    <div class="bg-[url('/assets/images/banner.png')] bg-cover bg-center h-[660px] w-full px-20">
+      <div class="h-[60px] pt-12">
+        <img src="/assets/images/Logo.png" alt="logo du site petits plats 2.0">
+      </div>
+      <div class="h-[600px] flex flex-col justify-center items-center w-full">
+        <h1 class="text-amber-300 text-[44px] w-[890px] text-center font-anton">
+          CHERCHEZ PARMI PLUS DE 1500 RECETTES
+          DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES
+        </h1>
+        <div class="bg-white flex justify-between items-center rounded-md w-3/4 mt-5 h-20 px-3">
+          <input
+          type="text"
+          class="w-full h-full p-5"
+          placeholder="Rechercher une recette, un ingrédient, ..."
+          >
+          <div class="bg-black rounded-md h-14 w-14 flex justify-center items-center">
+            <em class="fa-solid fa-magnifying-glass text-white text-[25px]"></em>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div id="recipe-cards" class="flex  flex-wrap w-full gap-12 p-32 justify-between bg-gray-200"></div>
+
+  <script type="module" src="./main.js"></script>
+
+</body>
+</html>
