@@ -18,3 +18,7 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.scroll-bar-hidden {
+  scrollbar-width: none;
+}

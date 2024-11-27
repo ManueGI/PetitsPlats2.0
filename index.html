@@ -1,45 +1,132 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="./css/output.css" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@200..800&display=swap" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./css/output.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
 
-
-  <title>Document</title>
-</head>
-<body>
-  <header>
-    <div class="bg-[url('/assets/images/banner.png')] bg-cover bg-center h-[660px] w-full px-20">
-      <div class="h-[60px] pt-12">
-        <img src="/assets/images/Logo.png" alt="logo du site petits plats 2.0">
-      </div>
-      <div class="h-[600px] flex flex-col justify-center items-center w-full">
-        <h1 class="text-amber-300 text-[44px] w-[890px] text-center font-anton">
-          CHERCHEZ PARMI PLUS DE 1500 RECETTES
-          DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES
-        </h1>
-        <div class="bg-white flex justify-between items-center rounded-md w-3/4 mt-5 h-20 px-3">
-          <input
-          type="text"
-          class="w-full h-full p-5"
-          placeholder="Rechercher une recette, un ingrédient, ..."
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <div
+        class="bg-[url('/assets/images/banner.png')] bg-cover bg-center h-[660px] w-full px-20"
+      >
+        <div class="h-[60px] pt-12">
+          <img
+            src="/assets/images/Logo.png"
+            alt="logo du site petits plats 2.0"
+          />
+        </div>
+        <div class="h-[600px] flex flex-col justify-center items-center w-full">
+          <h1
+            class="text-amber-300 text-[44px] w-[890px] text-center font-anton"
           >
-          <div class="bg-black rounded-md h-14 w-14 flex justify-center items-center">
-            <em class="fa-solid fa-magnifying-glass text-white text-[25px]"></em>
+            CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN,SIMPLES ET
+            DÉLICIEUSES
+          </h1>
+          <div
+            class="bg-white flex justify-between items-center rounded-md w-3/4 mt-5 h-20 pr-3 relative"
+          >
+            <input
+              type="text"
+              id="input-search"
+              class="w-full h-full p-5 m-5 focus:outline-none"
+              placeholder="Rechercher une recette, un ingrédient, ..."
+            />
+            <button
+              class="bg-black rounded-md h-14 w-14 flex justify-center items-center"
+            >
+              <em
+                class="fa-solid fa-magnifying-glass text-white text-[25px]"
+              ></em>
+            </button>
+            <button
+              class="rounded-md h-4 w-4 mr-2 flex justify-center items-center absolute right-16 top-[40%]"
+              id="btn-search-close"
+            >
+              <em class="fa-solid fa-xmark text-black text-[25px]"></em>
+            </button>
           </div>
         </div>
       </div>
-    </div>
-  </header>
+    </header>
+    <main class="bg-gray-200">
+      <div class="max-w-7xl m-auto px-5">
+        <nav class="flex justify-between items-center py-5">
+          <div
+            id="search-buttons"
+            class="flex justify-between items-center w-[55%]"
+          >
+            <div id="ingredient-search" class="relative">
+              <button
+                id="ingredient-button"
+                class="bg-white p-4 rounded-lg hover:cursor-pointer w-44 flex justify-between"
+                aria-label="chercher les recettes par ingrédient"
+              >
+                <span>Ingrédients</span>
+                <em class="fa-solid fa-chevron-down"></em>
+              </button>
 
-  <div id="recipe-cards" class="flex  flex-wrap w-full gap-12 p-32 justify-between bg-gray-200"></div>
+              <div
+                id="dropdown-menu-ingredient"
+                class="hidden bg-white p-4 rounded-lg absolute w-44 h-80 z-50 top-0 right-0"
+              >
+              </div>
+            </div>
+            <div id="appliance-search" class="relative">
+              <button
+              id="appliance-button"
+                class="bg-white p-4 rounded-lg hover:cursor-pointer w-44 flex justify-between"
+                aria-label="chercher les recettes par appareil"
+              >
+                <span>Appareils</span>
+                <em class="fa-solid fa-chevron-down"></em>
+              </button>
+              <div
+                id="dropdown-menu-appliance"
+                class="hidden bg-white p-4 rounded-lg absolute w-44 h-80 z-50 top-0 right-0"
+                role="menu"
+              ></div>
+            </div>
+            <div id="utensil-search" class="relative">
+              <button
+              id="ustensil-button"
+                class="bg-white p-4 rounded-lg hover:cursor-pointer w-44 flex justify-between"
+                aria-label="chercher les recettes par ustensile"
+              >
+                <span>Ustensiles</span>
+                <em class="fa-solid fa-chevron-down"></em>
+              </button>
+              <div
+                id="dropdown-menu-utensil"
+                class="hidden bg-white p-4 rounded-lg absolute w-44 h-80 z-50 top-0 right-0"
+                role="menu"
+              ></div>
+            </div>
+          </div>
+          <div id="recipes-count">
+            <span class="font-bold text-lg font-anton"> 1500 recipes </span>
+          </div>
+        </nav>
 
-  <script type="module" src="./main.js"></script>
+        <div
+          id="recipe-cards"
+          class="flex flex-wrap w-full gap-12 justify-between py-5"
+        ></div>
+      </div>
+    </main>
 
-</body>
+    <script type="module" src="./main.js"></script>
+  </body>
 </html>
