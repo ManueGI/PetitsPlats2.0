@@ -51,12 +51,13 @@
                 class="fa-solid fa-magnifying-glass text-white text-[25px]"
               ></em>
             </button>
-            <button
-              class="rounded-md h-4 w-4 mr-2 flex justify-center items-center absolute right-16 top-[40%]"
-              id="btn-search-close"
+            <div
+              class="flex rounded-md h-4 w-4 mr-2 justify-center items-center absolute right-16 top-[40%]"
             >
-              <em class="fa-solid fa-xmark text-black text-[25px]"></em>
-            </button>
+              <button class="hidden" id="btn-search-close">
+                <em class="fa-solid fa-xmark text-black text-[25px]"></em>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -81,12 +82,11 @@
               <div
                 id="dropdown-menu-ingredient"
                 class="hidden bg-white p-4 rounded-lg absolute w-44 h-80 z-50 top-0 right-0"
-              >
-              </div>
+              ></div>
             </div>
             <div id="appliance-search" class="relative">
               <button
-              id="appliance-button"
+                id="appliance-button"
                 class="bg-white p-4 rounded-lg hover:cursor-pointer w-44 flex justify-between"
                 aria-label="chercher les recettes par appareil"
               >
@@ -101,7 +101,7 @@
             </div>
             <div id="utensil-search" class="relative">
               <button
-              id="ustensil-button"
+                id="ustensil-button"
                 class="bg-white p-4 rounded-lg hover:cursor-pointer w-44 flex justify-between"
                 aria-label="chercher les recettes par ustensile"
               >
@@ -115,10 +115,14 @@
               ></div>
             </div>
           </div>
-          <div id="recipes-count">
-            <span class="font-bold text-lg font-anton"> 1500 recipes </span>
+          <div id="recipes-count" class="flex">
+            <span class="font-bold text-lg font-anton" id="recipe-count-number"> 0 </span>
+            <span class="font-bold text-lg font-anton ml-1"> recipes </span>
           </div>
         </nav>
+
+        <div id="selected-tags" class="flex justify-start items-center">
+        </div>
 
         <div
           id="recipe-cards"
