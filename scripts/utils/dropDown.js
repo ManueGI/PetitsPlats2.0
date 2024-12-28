@@ -18,6 +18,15 @@ export function extractUniqueKeywords(recipes, type) {
 export function populateDropdown(menuId, title, keywords, addSelectedTags) {
   const dropdownMenu = document.getElementById(`dropdown-menu-${menuId}`);
   let tags = keywords;
+
+  let tagsHTML = ""; // On initialise une chaîne vide pour stocker les éléments <li> des tags
+
+  // Utilisation de la boucle for pour itérer sur les tags
+  for (let i = 0; i < tags.length; i++) {
+    tagsHTML += `<li class="text-sm hover:bg-amber-300 p-2 cursor-pointer w-full" data-keyword="${tags[i]}">${tags[i]}</li>`;
+  }
+
+  // Mise à jour de innerHTML avec les éléments HTML créés
   dropdownMenu.innerHTML = `
     <div class="sticky top-0 bg-white z-10">
       <div class="flex justify-between items-center">
@@ -47,24 +56,21 @@ export function populateDropdown(menuId, title, keywords, addSelectedTags) {
     </div>
     <div class="h-48 overflow-y-scroll z-50 scroll-bar-hidden w-full">
       <ul class="mt-2 w-full">
-        ${tags
-          .map(
-            (tag) =>
-              `<li class="text-sm hover:bg-amber-300 p-2 cursor-pointer w-full" data-keyword="${tag}">${tag}</li>`
-          )
-          .join("")}
+        ${tagsHTML}
       </ul>
     </div>
   `;
 
+
   // Attacher un événement à chaque élément de la liste
   const items = dropdownMenu.querySelectorAll("li");
-  items.forEach((item) => {
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
     item.addEventListener("click", () => {
       const keyword = item.dataset.keyword;
-      addSelectedTags(keyword); // Appel de la fonction pour ajouter/supprimer le tag
+      addSelectedTags(keyword); // Appel de la fonction pour ajouter le tag
     });
-  });
+  }
 
   // Fonction pour mettre à jour les recettes affichées
   function updateTags() {
@@ -75,21 +81,25 @@ export function populateDropdown(menuId, title, keywords, addSelectedTags) {
 
     // Réinjecter les tags filtrés dans le dropdown
     const tagList = dropdownMenu.querySelector("ul");
-    tagList.innerHTML = tags
-      .map(
-        (tag) =>
-          `<li class="text-sm hover:bg-amber-300 p-2 cursor-pointer w-full" data-keyword="${tag}">${tag}</li>`
-      )
-      .join("");
 
+    let tagsHTML = ""; // On initialise une chaîne vide pour stocker les éléments HTML
+
+    // Utilisation de la boucle for pour itérer sur les tags
+    for (let i = 0; i < tags.length; i++) {
+      tagsHTML += `<li class="text-sm hover:bg-amber-300 p-2 cursor-pointer w-full" data-keyword="${tags[i]}">${tags[i]}</li>`;
+    }
+
+    // Remplir la liste avec les éléments HTML créés
+    tagList.innerHTML = tagsHTML;
     // Réattacher les événements aux nouveaux items
     const items = dropdownMenu.querySelectorAll("li");
-    items.forEach((item) => {
+    for (let i = 0; i < items.length; i++) {
+      const item = items[i];
       item.addEventListener("click", () => {
         const keyword = item.dataset.keyword;
-        addSelectedTags(keyword); // Appel de la fonction pour ajouter/supprimer le tag
+        addSelectedTags(keyword); // Appel de la fonction pour ajouter le tag
       });
-    });
+    }
   }
 
   const inputField = document.getElementById(`input-${menuId}`);
@@ -102,15 +112,6 @@ export function populateDropdown(menuId, title, keywords, addSelectedTags) {
     clearInput(menuId, inputField, closeButton);
     updateTags(tags);
   });
-
-  function updateSelectedTags(tag) {
-    if (selectedTags.includes(tag)) {
-      selectedTags = selectedTags.filter((t) => t !== tag); // Supprimer le tag
-    } else {
-      selectedTags.push(tag); // Ajouter le tag
-    }
-    updateRecipes(); // Rafraîchir l'affichage
-  }
 }
 
 // Fonction pour filtrer les items du dropdown
@@ -159,7 +160,7 @@ export function toggleDropdown(type) {
 
 function closeAllDropdowns() {
   const allMenus = document.querySelectorAll('[id^="dropdown-menu-"]');
-  allMenus.forEach((menu) => {
-    menu.classList.add("hidden");
-  });
+  for (let i = 0; i < allMenus.length; i++) {
+    allMenus[i].classList.add("hidden"); // Ajouter la classe 'hidden' à chaque menu
+  }
 }

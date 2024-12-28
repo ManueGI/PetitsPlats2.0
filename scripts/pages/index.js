@@ -27,22 +27,35 @@ export function displayRecipesPage() {
     const recipesCount = document.getElementById("recipe-count-number");
     recipesCount.textContent = filteredRecipes.length;
 
-   // Si aucune recette n'est trouvée
-  if (filteredRecipes.length === 0) {
-    // Créer le message "Aucune recette correspondante trouvée"
-    const noRecipesMessage = document.createElement('p');
-    noRecipesMessage.textContent = 'Aucune recette correspondante trouvée';
-    noRecipesMessage.classList.add('text-center', 'font-bold', 'text-xl', 'w-full', 'h-52');
+    // Si aucune recette n'est trouvée
+    if (filteredRecipes.length === 0) {
+      // Créer le message "Aucune recette correspondante trouvée"
+      const noRecipesMessage = document.createElement("p");
+      noRecipesMessage.textContent = "Aucune recette correspondante trouvée";
+      noRecipesMessage.classList.add(
+        "text-center",
+        "font-bold",
+        "text-xl",
+        "w-full",
+        "h-52"
+      );
 
-    // Ajouter ce message au conteneur de recettes
-    container.innerHTML = ''; // Vider le conteneur des recettes
-    container.appendChild(noRecipesMessage);
-  } else {
-    // Si des recettes sont trouvées, afficher les recettes
-    container.innerHTML = filteredRecipes
-      .map((recipe) => createRecipeCard(recipe))
-      .join("");
-  }
+      // Ajouter ce message au conteneur de recettes
+      container.innerHTML = ""; // Vider le conteneur des recettes
+      container.appendChild(noRecipesMessage);
+    } else {
+      // Si des recettes sont trouvées, afficher les recettes avec une boucle for
+      container.innerHTML = ""; // Vider le conteneur des recettes
+
+      let recipesHtml = ""; // Variable pour accumuler le HTML des cartes
+
+      for (let i = 0; i < filteredRecipes.length; i++) {
+        const recipe = filteredRecipes[i];
+        recipesHtml += createRecipeCard(recipe); // Ajouter chaque carte de recette
+      }
+
+      container.innerHTML = recipesHtml; // Mettre à jour le conteneur avec le HTML généré
+    }
   }
 
   // Fonction pour gérer les tags sélectionnés
@@ -87,8 +100,13 @@ export function displayRecipesPage() {
   }
 
   function removeSelectedTag(tag) {
-    // Supprimer le tag de la liste des tags sélectionnés
-    selectedTags = selectedTags.filter((t) => t !== tag);
+    // Supprimer le tag de la liste des tags sélectionnés avec une boucle for
+    for (let i = 0; i < selectedTags.length; i++) {
+      if (selectedTags[i] === tag) {
+        selectedTags.splice(i, 1); // Enlever l'élément de selectedTags
+        break; // Quitter la boucle dès qu'on trouve le tag
+      }
+    }
 
     // Supprimer l'élément visuel du tag
     const tagElement = document.querySelector(`[data-tag="${tag}"]`);
