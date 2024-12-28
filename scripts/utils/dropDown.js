@@ -27,6 +27,7 @@ export function populateDropdown(menuId, title, keywords, addSelectedTags) {
       <div class="border-2 border-gray-200 flex justify-between items-center rounded my-3 overflow-hidden relative px-2 py-1">
         <input
           type="text"
+          autocomplete="off"
           id="input-${menuId}"
           class="focus:outline-none w-full m-1 text-gray-400"
           placeholder="Rechercher..."
@@ -102,15 +103,6 @@ export function populateDropdown(menuId, title, keywords, addSelectedTags) {
     clearInput(menuId, inputField, closeButton);
     updateTags(tags);
   });
-
-  function updateSelectedTags(tag) {
-    if (selectedTags.includes(tag)) {
-      selectedTags = selectedTags.filter((t) => t !== tag); // Supprimer le tag
-    } else {
-      selectedTags.push(tag); // Ajouter le tag
-    }
-    updateRecipes(); // Rafraîchir l'affichage
-  }
 }
 
 // Fonction pour filtrer les items du dropdown
