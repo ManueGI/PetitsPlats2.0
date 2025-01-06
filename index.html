@@ -45,13 +45,13 @@
               class="w-full h-full p-5 m-5 focus:outline-none"
               placeholder="Rechercher une recette, un ingrédient, ..."
             />
-            <button
+            <div
               class="bg-black rounded-md h-14 w-14 flex justify-center items-center"
             >
               <em
                 class="fa-solid fa-magnifying-glass text-white text-[25px]"
               ></em>
-            </button>
+            </div>
             <div
               class="flex rounded-md h-4 w-4 mr-2 justify-center items-center absolute right-16 top-[40%]"
             >
@@ -117,13 +117,14 @@
             </div>
           </div>
           <div id="recipes-count" class="flex">
-            <span class="font-bold text-lg font-anton" id="recipe-count-number"> 0 </span>
+            <span class="font-bold text-lg font-anton" id="recipe-count-number">
+              0
+            </span>
             <span class="font-bold text-lg font-anton ml-1"> recipes </span>
           </div>
         </nav>
 
-        <div id="selected-tags" class="flex justify-start items-center">
-        </div>
+        <div id="selected-tags" class="flex justify-start items-center"></div>
 
         <div
           id="recipe-cards"

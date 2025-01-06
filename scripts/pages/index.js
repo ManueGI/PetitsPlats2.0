@@ -10,6 +10,7 @@ import { clearInput } from "../utils/clearInput.js";
 import { handleInputChange } from "../utils/handleInputChange.js";
 
 let selectedTags = []; // Liste des tags sélectionnés
+
 export function displayRecipesPage() {
   const inputSearch = document.getElementById("input-search");
   const closeButton = document.getElementById(`btn-search-close`);
@@ -18,9 +19,7 @@ export function displayRecipesPage() {
   // Fonction pour mettre à jour les recettes affichées
   function updateRecipes() {
     let searchValue = inputSearch.value.trim();
-    if (searchValue.length < 3) {
-      searchValue = ""; // Annule la recherche
-    }
+    if (searchValue.length > 0 && searchValue.length < 3) return;
     const filteredRecipes = searchRecipe(recipes, searchValue, selectedTags);
 
     // Met à jour le contenu du span avec le nombre de recettes filtrées
@@ -122,38 +121,24 @@ export function displayRecipesPage() {
   updateRecipes();
 
   // Gérer les événements des dropdowns
-  document.getElementById("ingredient-search").addEventListener("click", () => {
-    toggleDropdown("ingredient");
-  });
-  document.getElementById("appliance-search").addEventListener("click", () => {
-    toggleDropdown("appliance");
-  });
-  document.getElementById("utensil-search").addEventListener("click", () => {
-    toggleDropdown("utensil");
-  });
+  const DROPDOWN_IDS = {
+    ingredient: "ingredient-search",
+    appliance: "appliance-search",
+    utensil: "utensil-search",
+  };
 
-  // Extraire les mots-clés uniques
-  const ingredientKeywords = extractUniqueKeywords(recipes, "ingredient");
-  const applianceKeywords = extractUniqueKeywords(recipes, "appliance");
-  const utensilKeywords = extractUniqueKeywords(recipes, "utensil");
+  Object.entries(DROPDOWN_IDS).forEach(([key, id]) => {
+    document.getElementById(id).addEventListener("click", () => toggleDropdown(key));
+  });
 
   // Peupler les dropdowns
-  populateDropdown(
-    "ingredient",
-    "Ingrédients",
-    ingredientKeywords.sort(),
-    addSelectedTags
-  );
-  populateDropdown(
-    "appliance",
-    "Appareils",
-    applianceKeywords.sort(),
-    addSelectedTags
-  );
-  populateDropdown(
-    "utensil",
-    "Ustensiles",
-    utensilKeywords.sort(),
-    addSelectedTags
-  );
+  const cachedKeywords = {
+    ingredient: extractUniqueKeywords(recipes, "ingredient").sort(),
+    appliance: extractUniqueKeywords(recipes, "appliance").sort(),
+    utensil: extractUniqueKeywords(recipes, "utensil").sort(),
+  };
+
+  Object.entries(cachedKeywords).forEach(([key, keywords]) => {
+    populateDropdown(key, key.charAt(0).toUpperCase() + key.slice(1), keywords, addSelectedTags);
+  });
 }

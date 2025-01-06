@@ -1,7 +1,6 @@
 export function searchRecipe(recipes, searchValue, selectedTags) {
   const searchLower = searchValue.toLowerCase();
 
-
   return recipes.filter((recipe) => {
     const matchesSearch =
       recipe.name.toLowerCase().includes(searchLower) ||
@@ -9,7 +8,6 @@ export function searchRecipe(recipes, searchValue, selectedTags) {
       recipe.ingredients.some((i) =>
         i.ingredient.toLowerCase().includes(searchLower)
       );
-
 
     const matchesTags = selectedTags.every((tag) => {
       const tagLower = tag.toLowerCase();
@@ -19,7 +17,6 @@ export function searchRecipe(recipes, searchValue, selectedTags) {
         recipe.ustensils.some((u) => u.toLowerCase() === tagLower)
       );
     });
-
 
     return matchesSearch && matchesTags;
   });

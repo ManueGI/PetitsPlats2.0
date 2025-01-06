@@ -32,12 +32,11 @@ export function populateDropdown(menuId, title, keywords, addSelectedTags) {
           class="focus:outline-none w-full m-1 text-gray-400"
           placeholder="Rechercher..."
         />
-        <button
+        <div
           class="rounded-md h-4 w-4 mr-2 flex justify-center items-center"
-          id="btn-${menuId}"
         >
           <em class="fa-solid fa-magnifying-glass text-gray-400 text-[12px]"></em>
-        </button>
+        </div>
         <button
           class="hidden rounded-md h-4 w-4 mr-2 absolute right-5 top-[15%]"
           id="btn-${menuId}-close"
