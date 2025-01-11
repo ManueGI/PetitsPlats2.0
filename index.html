@@ -44,6 +44,7 @@
               id="input-search"
               class="w-full h-full p-5 m-5 focus:outline-none"
               placeholder="Rechercher une recette, un ingrédient, ..."
+              aria-label="Barre de recherche des recettes"
             />
             <div
               class="bg-black rounded-md h-14 w-14 flex justify-center items-center"
@@ -55,7 +56,11 @@
             <div
               class="flex rounded-md h-4 w-4 mr-2 justify-center items-center absolute right-16 top-[40%]"
             >
-              <button class="hidden" id="btn-search-close">
+              <button
+                class="hidden"
+                id="btn-search-close"
+                aria-label="Vider la barre de recherche"
+              >
                 <em class="fa-solid fa-xmark text-black text-[25px]"></em>
               </button>
             </div>
@@ -82,6 +87,7 @@
 
               <div
                 id="dropdown-menu-ingredient"
+                role="menu"
                 class="hidden bg-white p-4 rounded-lg absolute w-44 h-80 z-50 top-0 right-0"
               ></div>
             </div>
@@ -96,8 +102,8 @@
               </button>
               <div
                 id="dropdown-menu-appliance"
-                class="hidden bg-white p-4 rounded-lg absolute w-44 h-80 z-50 top-0 right-0"
                 role="menu"
+                class="hidden bg-white p-4 rounded-lg absolute w-44 h-80 z-50 top-0 right-0"
               ></div>
             </div>
             <div id="utensil-search" class="relative">
@@ -111,8 +117,8 @@
               </button>
               <div
                 id="dropdown-menu-utensil"
-                class="hidden bg-white p-4 rounded-lg absolute w-44 h-80 z-50 top-0 right-0"
                 role="menu"
+                class="hidden bg-white p-4 rounded-lg absolute w-44 h-80 z-50 top-0 right-0"
               ></div>
             </div>
           </div>
