@@ -19,7 +19,9 @@ export function displayRecipesPage() {
   // Fonction pour mettre à jour les recettes affichées
   function updateRecipes() {
     let searchValue = inputSearch.value.trim();
-    if (searchValue.length > 0 && searchValue.length < 3) return;
+    if (searchValue.length < 3) {
+      searchValue = ""; // pas de recherche si moins de 3 caractères tapés
+    }
     const filteredRecipes = searchRecipe(recipes, searchValue, selectedTags);
 
     // Met à jour le contenu du span avec le nombre de recettes filtrées
