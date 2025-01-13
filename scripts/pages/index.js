@@ -140,7 +140,13 @@ export function displayRecipesPage() {
     utensil: extractUniqueKeywords(recipes, "utensil").sort(),
   };
 
+  const translations = {
+    ingredient: "Ingrédients",
+    appliance: "Appareils",
+    utensil: "Ustensiles",
+  };
+
   Object.entries(cachedKeywords).forEach(([key, keywords]) => {
-    populateDropdown(key, key.charAt(0).toUpperCase() + key.slice(1), keywords, addSelectedTags);
+    populateDropdown(key, translations[key], keywords, addSelectedTags);
   });
 }
